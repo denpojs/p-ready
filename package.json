@@ -1,14 +1,14 @@
 {
   "name": "p-ready",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "description": "Ready state promise wrapper",
   "repository": "github:denpojs/p-ready",
   "author": "Vlad Afonin <mytecor@ya.ru>",
   "license": "MIT",
   "keywords": [
-  	"promise",
-  	"connection",
-  	"ready"
+    "promise",
+    "connection",
+    "ready"
   ]
 }
