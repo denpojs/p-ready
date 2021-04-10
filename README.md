@@ -13,6 +13,8 @@ let listener2 = ready(listener1) // Will use listener1 if it is not completed
 listener2.then(() => console.log('Done', listener2))
 
 assert.equal(listener1, listener2)
+
+listener2.resolve()
 ```
 
 # Usage example
