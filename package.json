@@ -5,5 +5,10 @@
   "description": "Ready state promise wrapper",
   "repository": "github:denpojs/p-ready",
   "author": "Vlad Afonin <mytecor@ya.ru>",
-  "license": "MIT"
+  "license": "MIT",
+  "keywords": [
+  	"promise",
+  	"connection",
+  	"ready"
+  ]
 }
