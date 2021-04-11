@@ -3,30 +3,29 @@
 
 # Api
 ```js
-let ready = require('p-ready')
-let assert = require('assert').strict
+let PReady = require('p-ready')
 
-let listener1 = ready()
-listener1.then(() => console.log('Done', listener1))
+let ready = new PReady
+ready.then(value => console.log('Done', value)) // Just like promise
+ready.resolve(1)
 
-let listener2 = ready(listener1) // Will use listener1 if it is not completed
-listener2.then(() => console.log('Done', listener2))
-
-assert.equal(listener1, listener2)
-
-listener2.resolve()
+// Ok, chaining is also supported
+.pending() // It's about creating a new promise, try to comment this line
+.then(value => console.log('Done', value))
+.resolve(2)
+.then(value => console.log('Done', value))
+// See more in index.d.ts
 ```
 
 # Usage example
 ```js
-let pReady = require('p-ready')
+let PReady = require('p-ready')
 
 class Transport {
-	ready = pReady()
+	ready = new PReady
 
 	connect() {
-		// Simulate connection
-		this.ready = pReady(this.ready)
+		// Connection simulation
 		console.log('Connecting')
 
 		setTimeout(() => {
@@ -35,14 +34,18 @@ class Transport {
 	}
 
 	reconnect() {
+		this.ready.pending()
 		this.connect()
 	}
 
 	async send(data) {
 		await this.ready // Here it is
+		// or use this.ready.promise for direct access
 		console.log('The', data, 'was sent, hooray!')
 	}
 }
+
+
 
 let transport = new Transport
 transport.connect()
