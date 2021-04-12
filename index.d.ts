@@ -7,8 +7,8 @@ declare class PReady<T> {
 	catch(onrejected?: (reason: any) => any): this
 	finally(onfinally?: () => any): this
 	
-	pending(): this
 	resolve(): this
 	reject(): this
+	reset(): this
 }
 export = PReady

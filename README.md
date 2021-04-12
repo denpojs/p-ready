@@ -10,7 +10,7 @@ ready.then(value => console.log('Done', value)) // Just like promise
 ready.resolve(1)
 
 // Ok, chaining is also supported
-.pending() // It's about creating a new promise, try to comment this line
+.reset() // It's about creating a new promise, try to comment this line
 .then(value => console.log('Done', value))
 .resolve(2)
 .then(value => console.log('Done', value))
@@ -34,7 +34,7 @@ class Transport {
 	}
 
 	reconnect() {
-		this.ready.pending()
+		this.ready.reset()
 		this.connect()
 	}
 

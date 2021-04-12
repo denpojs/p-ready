@@ -1,7 +1,12 @@
 
 module.exports = class PReady {
+	isPending = true
+
 	constructor() {
-		this.pending()
+		this.promise = new Promise((resolve, reject) => {
+			this.resolver = resolve
+			this.rejector = reject
+		})
 	}
 
 	then(onfulfilled, onrejected) {
@@ -19,17 +24,6 @@ module.exports = class PReady {
 		return this
 	}
 
-	pending() {
-		if(!this.isPending)
-			this.promise = new Promise((resolve, reject) => {
-				this.resolver = resolve
-				this.rejector = reject
-			})
-
-		this.isPending = true
-		return this
-	}
-
 	resolve(value) {
 		this.isPending = false
 		this.resolver(value)
@@ -41,4 +35,16 @@ module.exports = class PReady {
 		this.rejector(reason)
 		return this
 	}
+	
+	reset() {
+		if(!this.isPending)
+			this.promise = new Promise((resolve, reject) => {
+				this.resolver = resolve
+				this.rejector = reject
+			})
+
+		this.isPending = true
+		return this
+	}
+
 }
